@@ -1,0 +1,25 @@
+Build an interactive Bash script that automates the creation and deployment of
+ containerized setups. The script must guide the user through configuring a
+  multi-container stack by prompting for details like:
+  
+- Base images
+- Context directory
+- Dependency files
+- Startup commands
+- Port mappings
+- Custom bridge networks
+- Volume mounts
+- Service dependencies
+
+To simplify setup, the script can automatically inject parameters
+ such as container healthchecks and restart policies.
+
+Based on the provided inputs, the script must generate
+ both a Dockerfile and a Docker Compose file.
+  Before deployment, it must print the generated files
+   to the terminal for review and offer to spawn a terminal-based
+    text editor to allow the user to make any final edits.
+
+Once confirmed, the script must navigate to the
+ context directory, build the images, and launch the stack. Finally
+ , it must display container logs or any build errors.

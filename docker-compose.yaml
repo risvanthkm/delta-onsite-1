@@ -1,0 +1,28 @@
+services:
+    app:
+        build: ./1
+        ports:
+            - 8081:8081
+        networks:
+            - bridge1
+        restart: unless-stopped
+        volumes: 
+            - ./:/
+        depends_on:
+            redis :
+                condition: service_healthy
+    redis:
+        build: ./2
+        ports:
+            - 6379:6379
+        networks:
+            - bridge1
+        restart: unless-stopped
+        volumes: 
+            - ./:/
+        depends_on:
+            to_be_fixed :
+                condition: service_healthy
+networks:
+    bridge1:
+        driver: bridge
