@@ -14,4 +14,4 @@ def home():
     r.set("message", "Hello Redis")
     return r.get("message")
 
-app.run(host="0.0.0.0", port=8080)
+app.run(host="0.0.0.0", port=8081)
