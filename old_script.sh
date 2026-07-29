@@ -10,10 +10,10 @@ while true; do
 
     IFS=',' read -r name base_image dep_file dir stup_cmd host_port cont_port bridge mount dep
 
-    # if [[ -z "$name" || -z "$base_image" || -z "$dep_file" || -z "$dir" || -z "$stup_cmd" || -z "$host_port" || -z "$cont_port" || -z "$bridge" || -z "$mount" ]]; then
-    #     echo "Stopping Input : One or more required variables are empty."
-    #     break
-    # fi
+    if [[ -z "$name" || -z "$base_image" || -z "$dep_file" || -z "$dir" || -z "$stup_cmd" || -z "$host_port" || -z "$cont_port" || -z "$bridge" || -z "$mount" || -z "$dep" ]]; then
+        echo "Stopping Input : One or more required variables are empty."
+        break
+    fi
 
     bridges["$bridge"]=$bridge
 
@@ -46,12 +46,9 @@ EOF
         restart: unless-stopped
         volumes: 
             - $mount
-EOF
-
-    if [[ -n dep ]]; then
-    cat <<EOF >> docker-compose.yaml
         depends_on:
-            - $dep     
+            $dep :
+                condition: service_healthy
 EOF
 
     nano docker-compose.yaml
@@ -73,5 +70,5 @@ docker compose up
 
 docker compose logs
 
-#app,python:3.12-slim,requirments.txt,./1,python app.py,8081,8081,bridge1,./:/,redis
-#redis,redis:7-alpine,dep.txt,./2,echo,6379,6379,bridge1,./:/,to_be_fixed
+#app,python:3.12-slim,requirments.txt,./1,python3 app.py,8081,8081,bridge1,./:/,redis
+#redis,redis:7-alpine,dep.txt,./2,echo,6379,6379,bridge1,./:/,redis

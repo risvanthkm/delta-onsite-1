@@ -1,28 +1,22 @@
 services:
-    app:
-        build: ./1
-        ports:
-            - 8081:8081
-        networks:
-            - bridge1
-        restart: unless-stopped
-        volumes: 
-            - ./:/
-        depends_on:
-            redis :
-                condition: service_healthy
-    redis:
-        build: ./2
-        ports:
-            - 6379:6379
-        networks:
-            - bridge1
-        restart: unless-stopped
-        volumes: 
-            - ./:/
-        depends_on:
-            to_be_fixed :
-                condition: service_healthy
+  app:
+    build: ./web_server
+    ports:
+      - 8081:8081
+    networks:
+      - bridge1
+    restart: unless-stopped
+    depends_on:
+      - redis
+  redis:
+    image: redis:7-alpine
+    ports:
+      - 6379:6379
+    networks:
+      - bridge1
+    restart: unless-stopped
+    volumes:
+      - ./data:/data
 networks:
-    bridge1:
-        driver: bridge
+  bridge1:
+    driver: bridge

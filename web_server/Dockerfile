@@ -3,5 +3,4 @@ WORKDIR /app
 COPY requirments.txt ./
 RUN pip install -r requirments.txt
 COPY . .
-RUN python app.py
-
+CMD python3 app.py
