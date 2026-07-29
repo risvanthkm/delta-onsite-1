@@ -9,10 +9,18 @@ bash onsite_script.sh
 ```
 Inputs for building & launching a simple web server and a redis database
 
+---
+
+Input-1
 ```
 app,python:3.12-slim,requirements.txt,./web_server,python3 app.py,8081,8081,bridge1,,redis
+```
+Input-2
+```
 redis,,,./redis,,6379,6379,bridge1,./data:/data,,redis:7-alpine
 ```
+
+---
 
 This generates Dockerfile and docker-compose.yaml for the deployment
 
