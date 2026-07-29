@@ -16,6 +16,4 @@ redis,,,./redis,,6379,6379,bridge1,./data:/data,,redis:7-alpine
 
 This generates Dockerfile and docker-compose.yaml for the deployment
 
-Test it:
-
 Visit `http://localhost:8081/`
