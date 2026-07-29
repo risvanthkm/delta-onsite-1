@@ -10,7 +10,7 @@ bash onsite_script.sh
 Inputs for building & launching a simple web server and a redis database
 
 ```
-app,python:3.12-slim,requirements.txt,./web_server,python3 app.py,8081,8081,bridge1,,redis,
+app,python:3.12-slim,requirements.txt,./web_server,python3 app.py,8081,8081,bridge1,,redis
 redis,,,./redis,,6379,6379,bridge1,./data:/data,,redis:7-alpine
 ```
 
